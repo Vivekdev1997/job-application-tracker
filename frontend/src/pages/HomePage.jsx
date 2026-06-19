@@ -1,4 +1,15 @@
+import { Link } from "react-router";
+import { useSelector } from "react-redux";
+
+import DashboardPage from "./DashboardPage";
+
 function HomePage() {
+  const { isAuthenticated } = useSelector((state) => state.auth);
+
+  if (isAuthenticated) {
+    return <DashboardPage />;
+  }
+
   return (
     <section className="card hero-card mx-auto">
       <div className="card-body p-5">
@@ -11,7 +22,16 @@ function HomePage() {
           from one focused workspace.
         </p>
         <div className="alert alert-success mb-0" role="status">
-          Project foundation is ready. Authentication arrives in Phase 2.
+          Authentication is ready. Register or log in to start building your
+          application workspace.
+        </div>
+        <div className="d-flex gap-3 mt-4">
+          <Link className="btn btn-primary" to="/register">
+            Create Account
+          </Link>
+          <Link className="btn btn-outline-primary" to="/login">
+            Sign In
+          </Link>
         </div>
       </div>
     </section>
@@ -19,4 +39,3 @@ function HomePage() {
 }
 
 export default HomePage;
-
