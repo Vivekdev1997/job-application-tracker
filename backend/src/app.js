@@ -6,6 +6,8 @@ const morgan = require("morgan");
 const env = require("./config/env");
 const errorHandler = require("./middleware/errorHandler");
 const notFound = require("./middleware/notFound");
+const authRoutes = require("./routes/authRoutes");
+const dashboardRoutes = require("./routes/dashboardRoutes");
 const healthRoutes = require("./routes/healthRoutes");
 
 const app = express();
@@ -20,10 +22,11 @@ if (env.nodeEnv !== "test") {
   app.use(morgan(env.nodeEnv === "production" ? "combined" : "dev"));
 }
 
+app.use("/api/auth", authRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/health", healthRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
 
 module.exports = app;
-

@@ -1,3 +1,5 @@
-// Application services are exported from this module as they are introduced.
-module.exports = {};
+const authService = require("./authService");
+const dashboardService = require("./dashboardService");
+
+module.exports = { authService, dashboardService };
 

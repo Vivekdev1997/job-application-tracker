@@ -1,3 +1,5 @@
-// Domain models are exported from this module as they are introduced.
-module.exports = {};
+const JobApplication = require("./JobApplication");
+const User = require("./User");
+
+module.exports = { JobApplication, User };
 
